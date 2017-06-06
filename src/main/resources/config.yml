@@ -1,0 +1,10 @@
+credentials:
+  hostname: free.xsusenet.com
+  port: 80
+  username: dom
+  password: abc
+  workerCount: 5
+groups:
+ - a
+ - b
+ - c

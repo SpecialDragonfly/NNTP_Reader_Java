@@ -1,4 +1,4 @@
-package reader;
+package reader.task;
 
 import org.apache.commons.net.nntp.NNTPClient;
 

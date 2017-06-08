@@ -1,6 +1,9 @@
 package reader;
 
 import org.apache.commons.net.nntp.NNTPClient;
+import reader.config.Credentials;
+import reader.task.Task;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 

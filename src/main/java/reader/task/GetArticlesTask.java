@@ -1,14 +1,14 @@
-package reader;
+package reader.task;
 
 import org.apache.commons.net.nntp.NNTPClient;
 import org.apache.commons.net.nntp.NewsgroupInfo;
 
 public class GetArticlesTask extends Task {
     private final String group;
-    private final int start;
-    private final int last;
+    private final long start;
+    private final long last;
 
-    public GetArticlesTask(String group, int start, int last) {
+    public GetArticlesTask(String group, long start, long last) {
         super();
         this.group = group;
         this.start = start;

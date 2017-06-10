@@ -43,9 +43,9 @@ int count = 0;
                 Credentials credentials = this.config.getConfig().credentials;
                 CountDownLatch doneSignal = new CountDownLatch(credentials.workerCount);
 
-                IntStream.range(0, credentials.workerCount).forEach((value) -> {
-                    workers.add(new Worker(this.client, credentials, this.taskQueue, doneSignal));
-                });
+                IntStream.range(0, credentials.workerCount).forEach((value) ->
+                    workers.add(new Worker(this.client, credentials, this.taskQueue, doneSignal))
+                );
 
                 this.config.getConfig().groups.forEach((group) -> {
                     // Create worker task (cmd)

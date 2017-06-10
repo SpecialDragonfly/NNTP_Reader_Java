@@ -25,10 +25,10 @@ public class ArticleCountTask extends Task {
         try {
             NewsgroupInfo[] info = nntpClient.listNewsgroups(this.group);
 
-            for (int i = 0; i < info.length; i++) {
-                String groupName = info[i].getNewsgroup();
-                long first = info[i].getFirstArticleLong();
-                long last = info[i].getLastArticleLong();
+            for (NewsgroupInfo singleInfo : info) {
+                String groupName = singleInfo.getNewsgroup();
+                long first = singleInfo.getFirstArticleLong();
+                long last = singleInfo.getLastArticleLong();
 
                 for (long start = first; start <= last; start += 10000) {
                     if (start + 10000 <= last) {
@@ -39,9 +39,9 @@ public class ArticleCountTask extends Task {
                 }
                 this.db.saveGroup(
                     new GroupRow(
-                        info[i].getNewsgroup(),
-                        info[i].getPostingPermission() == 2,
-                        info[i].getArticleCountLong()
+                        singleInfo.getNewsgroup(),
+                        singleInfo.getPostingPermission() == 2,
+                        singleInfo.getArticleCountLong()
                     )
                 );
 

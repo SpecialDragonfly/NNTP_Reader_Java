@@ -1,8 +1,6 @@
 package reader.action;
 
 import org.apache.commons.net.nntp.NNTPClient;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 import reader.Worker;
 import reader.config.Config;
 import reader.config.Credentials;
@@ -10,17 +8,12 @@ import reader.repository.ReaderDatabase;
 import reader.task.ArticleCountTask;
 import reader.task.Task;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.IntStream;
 
-public class ManageQueue implements Runnable {
+public class ManageQueue {
 
     private NNTPClient client;
     private ConcurrentLinkedQueue<Task> taskQueue;
@@ -34,8 +27,7 @@ public class ManageQueue implements Runnable {
         this.config = config;
     }
 
-    @Override
-    public void run() {
+    public void updateArticles() {
         try {
             ArrayList<Worker> workers = new ArrayList<>();
 int count = 0;
@@ -52,7 +44,7 @@ int count = 0;
                     this.taskQueue.add(new ArticleCountTask(group, this.taskQueue, this.db));
                 });
 
-                workers.forEach(Worker::run);
+//                workers.forEach(Worker::run);
                 doneSignal.await();
                 count++;
             }
